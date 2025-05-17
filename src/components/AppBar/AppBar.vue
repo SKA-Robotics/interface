@@ -1,14 +1,14 @@
 <script setup>
-import { computed } from 'vue'
-
 import FIROExpandedLogo from '@/assets/FIROExpandedLogo'
 import FIROLogo from '@/assets/FIROLogo'
 import FIROSmallLogo from '@/assets/FIROSmallLogo'
 import { useForceNavDrawerStore, useViewModeStore } from '@/stores'
-import NormalTools from './NormalTools.vue'
+import { computed } from 'vue'
+
 import EditTools from './EditTools.vue'
-import ManualSteering from './Streering/ManualSteering.vue'
+import NormalTools from './NormalTools.vue'
 import AutonomousSteering from './Streering/AutonomousSteering.vue'
+import ManualSteering from './Streering/ManualSteering.vue'
 
 const forceNavDrawerStore = useForceNavDrawerStore()
 const viewModeStore = useViewModeStore()

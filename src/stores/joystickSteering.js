@@ -1,18 +1,18 @@
-import { defineStore } from 'pinia'
-import { computed, ref, watch } from 'vue'
-import { useSteeringStore, useRosStore, useJoystickStore } from './'
-import {
-    useJoy5dofManipulator,
-    useJoyDiffDrive,
-    useJoyMultiplexer,
-} from './nodes'
-
-import ROSLIB from 'roslib'
 import {
     callService,
     onRosConnected,
     onRosDisconnected,
 } from '@/misc/roslibExtensions'
+import ROSLIB from 'roslib'
+import { computed, ref, watch } from 'vue'
+import { defineStore } from 'pinia'
+
+import { useJoystickStore, useRosStore, useSteeringStore } from './'
+import {
+    useJoy5dofManipulator,
+    useJoyDiffDrive,
+    useJoyMultiplexer,
+} from './nodes'
 
 export const useJoystickSteeringStore = defineStore('joystickSteering', () => {
     const steeringStore = useSteeringStore()

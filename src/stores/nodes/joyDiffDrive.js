@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import { computed } from 'vue'
 import { useDynamicReconfigure } from '@/misc/roslibExtensions'
+import { computed } from 'vue'
+import { defineStore } from 'pinia'
 
 export const useJoyDiffDrive = defineStore('joyDiffDrive', () => {
     const nodeName = 'joy_diff_drive'

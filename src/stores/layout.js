@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import { ref, computed, getCurrentInstance } from 'vue'
 import panelViewConfig from '@/assets/panelViewConfig.json'
+import { computed, getCurrentInstance, ref } from 'vue'
+import { defineStore } from 'pinia'
 
 const generateDefaultConfig = () =>
     Array.from({ length: 3 }, () =>

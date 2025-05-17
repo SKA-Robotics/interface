@@ -1,6 +1,6 @@
 import { useTopicSubscriber } from '@/misc/roslibExtensions'
-import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { defineStore } from 'pinia'
 
 export const useBatteryLevelStore = defineStore('batteryLevel', () => {
     const percentage = ref(0)

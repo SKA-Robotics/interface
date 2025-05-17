@@ -1,14 +1,14 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
-import { RouterView } from 'vue-router'
+import EncryptionErrorScreen from '@/components/EncryptionErrorScreen.vue'
+import LoadingScreen from '@/components/LoadingScreen.vue'
 import {
-    useJoystickStore,
     useGstreamerStore,
+    useJoystickStore,
     useRosStore,
     useSteeringStore,
 } from '@/stores'
-import LoadingScreen from '@/components/LoadingScreen.vue'
-import EncryptionErrorScreen from '@/components/EncryptionErrorScreen.vue'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { RouterView } from 'vue-router'
 
 const rosStore = useRosStore()
 const gstreamerStore = useGstreamerStore()

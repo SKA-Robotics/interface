@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted, getCurrentInstance } from 'vue'
 import panelViewConfig from '@/assets/panelViewConfig.json'
 import { useForceNavDrawerStore } from '@/stores'
+import { getCurrentInstance, onMounted, ref } from 'vue'
 
 const items = ref(panelViewConfig)
 

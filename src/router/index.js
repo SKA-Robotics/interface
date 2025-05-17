@@ -1,10 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
+import panelViewConfig from '@/assets/panelViewConfig.json'
 //import HomeView from '@/views/HomeView.vue'
 import PanelView from '@/views/PanelView.vue'
-
-import panelViewConfig from '@/assets/panelViewConfig.json'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 const variants = panelViewConfig.map((value) => value.name)
 

@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import { computed } from 'vue'
 import { useDynamicReconfigure } from '@/misc/roslibExtensions'
+import { computed } from 'vue'
+import { defineStore } from 'pinia'
 
 export const useJoy5dofManipulator = defineStore('joy5dofManipulator', () => {
     const nodeName = 'joy_5dof_manipulator'
