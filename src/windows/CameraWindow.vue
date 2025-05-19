@@ -1,52 +1,16 @@
 <script setup>
-import { SessionState } from '@/lib/go2rtc/video-state'
 import { useCameraStore } from '@/stores'
-import { computed, defineProps, onMounted, ref } from 'vue'
+import { computed, defineProps } from 'vue'
 
 const cameraStore = useCameraStore()
 const props = defineProps(['windowDimensions', 'extraConfig'])
-const state = ref(SessionState.idle)
-
-const containerRef = ref(null)
 
 const statusIcon = computed(() => {
     if (!cameraStore.connected) {
         return 'mdi-power-plug-off'
     } else {
-        return (
-            {
-                [SessionState.closed]: 'mdi-video-off',
-                [SessionState.loading]: 'mdi-loading',
-                [SessionState.streaming]: 'none',
-            }[state.value] || 'mdi-help'
-        )
+        return 'none'
     }
-})
-
-onMounted(() => {
-    const container = containerRef.value
-
-    if (!container) {
-        return
-    }
-
-    const stream = document.createElement('video-stream')
-
-    stream.onChangeStream = (newState) => {
-        console.log('Change', newState)
-        state.value = newState
-    }
-
-    stream.style.width = '100%'
-    stream.style.height = '100%'
-    stream.background = true
-    stream.src = new URL(
-        cameraStore.url +
-            '/ws?src=' +
-            encodeURIComponent(props.extraConfig.videoSource)
-    ).toString()
-
-    container.appendChild(stream)
 })
 </script>
 <template>
@@ -70,6 +34,11 @@ onMounted(() => {
         >
             {{ statusIcon }}
         </v-icon>
+        <iframe
+            width="100%"
+            height="100%"
+            :src="`http://localhost:8100/stream.html?src=${props.extraConfig.videoSource}`"
+        ></iframe>
     </div>
 </template>
 <style scoped>
@@ -90,9 +59,5 @@ onMounted(() => {
     transform: translate(-50%, -50%);
     font-size: 100px;
     z-index: 10;
-}
-video-stream {
-    width: 100%;
-    height: 100%;
 }
 </style>
