@@ -34,8 +34,9 @@ export const useCameraStore = defineStore('cameras', () => {
 
                 connected.value = true
             })
-            .catch(() => {
+            .catch((err) => {
                 connected.value = false
+                console.log(err)
             })
     }
 
