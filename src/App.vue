@@ -1,8 +1,9 @@
 <script setup>
 import EncryptionErrorScreen from '@/components/EncryptionErrorScreen.vue'
 import LoadingScreen from '@/components/LoadingScreen.vue'
+import { VideoStream } from '@/lib/go2rtc/video-stream'
 import {
-    useGstreamerStore,
+    useCameraStore,
     useJoystickStore,
     useRosStore,
     useSteeringStore,
@@ -10,8 +11,10 @@ import {
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 
+customElements.define('video-stream', VideoStream)
+
 const rosStore = useRosStore()
-const gstreamerStore = useGstreamerStore()
+const cameraStore = useCameraStore()
 const joystickStore = useJoystickStore()
 const steeringStore = useSteeringStore()
 
@@ -41,8 +44,7 @@ const networkTest = async () => {
 onMounted(() => {
     networkTest().then((passed) => {
         if (passed) {
-            gstreamerStore.connect()
-            //gstreamerStore
+            cameraStore.connect()
             rosStore.connect()
             joystickStore.start()
             steeringStore.start()

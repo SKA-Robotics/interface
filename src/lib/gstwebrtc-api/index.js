@@ -25,14 +25,14 @@ import {
 } from './gstwebrtc-api'
 
 export {
-    SessionState,
-    registerConnectionListener,
-    unregisterConnectionListener,
-    unregisterAllConnectionListeners,
-    getAvailableProducers,
-    registerProducersListener,
-    unregisterProducersListener,
-    unregisterAllProducersListeners,
     createConsumerSession,
+    getAvailableProducers,
+    registerConnectionListener,
+    registerProducersListener,
+    SessionState,
     startGstreamerConnection,
+    unregisterAllConnectionListeners,
+    unregisterAllProducersListeners,
+    unregisterConnectionListener,
+    unregisterProducersListener,
 }

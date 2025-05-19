@@ -1,5 +1,5 @@
 <script setup>
-import { useGstreamerStore, useRosStore, useViewModeStore } from '@/stores'
+import { useCameraStore, useRosStore, useViewModeStore } from '@/stores'
 import { computed, defineProps } from 'vue'
 
 import IconButtonList from './IconButtonList.vue'
@@ -7,13 +7,13 @@ import IconButtonList from './IconButtonList.vue'
 const props = defineProps(['show'])
 
 const viewModeStore = useViewModeStore()
-const gstreamerStore = useGstreamerStore()
+const cameraStore = useCameraStore()
 const rosStore = useRosStore()
 const { editMode } = viewModeStore
 
 const buttons = computed(() => [
     { type: 'inputList' },
-    gstreamerStore.connected
+    cameraStore.connected
         ? {
               type: 'icon',
               icon: 'mdi-video',
