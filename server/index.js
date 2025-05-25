@@ -5,9 +5,10 @@ const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
 const app = express()
+const os = require('os');
 
 const distDir = path.join(__dirname, '..', 'dist')
-const certDir = path.join(__dirname, '..', '..', 'certificates')
+const certDir = path.join(os.homedir(), 'certificates');
 
 const corsOptions = {
     optionsSuccessStatus: 200,
