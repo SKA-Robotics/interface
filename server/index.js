@@ -4,11 +4,11 @@ const http = require('http')
 const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
+const os = require('os')
 const app = express()
-const os = require('os');
 
 const distDir = path.join(__dirname, '..', 'dist')
-const certDir = path.join(os.homedir(), 'certificates');
+const certDir = path.join(os.homedir(), 'certificates')
 
 const corsOptions = {
     optionsSuccessStatus: 200,
@@ -29,8 +29,8 @@ app.use('/', (req, res) => {
 })
 
 const sslOptions = {
-    key: fs.readFileSync(path.join(certDir, 'firo.key')),
-    cert: fs.readFileSync(path.join(certDir, 'firo.crt')),
+    key: fs.readFileSync(path.join(certDir, 'sirius.key')),
+    cert: fs.readFileSync(path.join(certDir, 'sirius.crt')),
 }
 
 http.createServer(app).listen(80, () =>

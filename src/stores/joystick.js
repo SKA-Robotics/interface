@@ -54,6 +54,11 @@ export const useJoystickStore = defineStore('joystick', () => {
 
     const gamepadIds = {
         '045e-02ea-Microsoft X-Box One S pad': 'xboxOneS',
+        '045e-02fd-Xbox Wireless Controller': 'xboxOneS',
+        '045e-0b12-Microsoft Xbox Series S|X Controller': 'xboxSeriesSX',
+        '8BitDo 8BitDo Ultimate 2C Wireless Controller (Vendor: 2dc8 Product: 310a)':
+            'xboxSeriesSX',
+        '8BitDo Ultimate 2C Wireless (Vendor: 2dc8 Product: 301b)': 'standard',
     }
 
     const getJoystick = () => navigator.getGamepads()[0]
@@ -67,7 +72,10 @@ export const useJoystickStore = defineStore('joystick', () => {
             const gamepadType = gamepadIds[joystick.id]
             switch (gamepadType) {
                 case 'xboxOneS':
+                case 'xboxSeriesSX':
                     return [axes[0], axes[1], axes[3], axes[4]]
+                case 'standard':
+                    return axes
                 default:
                     return []
             }
@@ -84,6 +92,8 @@ export const useJoystickStore = defineStore('joystick', () => {
             const gamepadType = gamepadIds[joystick.id]
             switch (gamepadType) {
                 case 'xboxOneS':
+                case 'xboxSeriesSX':
+                default:
                     return [
                         buttons[0],
                         buttons[1],
@@ -103,8 +113,8 @@ export const useJoystickStore = defineStore('joystick', () => {
                         axes[6] === 1.0 ? 1 : 0,
                         buttons[8],
                     ]
-                default:
-                    return []
+                case 'standard':
+                    return buttons
             }
         }
     }

@@ -37,7 +37,7 @@ const statusIcon = computed(() => {
         <iframe
             width="100%"
             height="100%"
-            :src="`http://localhost:8100/stream.html?src=${props.extraConfig.videoSource}`"
+            :src="`${cameraStore.url}${props.extraConfig.videoSource}`"
         ></iframe>
     </div>
 </template>

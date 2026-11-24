@@ -3,9 +3,13 @@ import { defineStore } from 'pinia'
 
 export const useCameraStore = defineStore('cameras', () => {
     const address = window.location.hostname
-    const port = 8100
-    const url = computed(() =>
-        new URL(`http://${address}:${port}/api`).toString()
+    const apiPort = 9997
+    const streamPort = 8889
+    const apiUrl = computed(() =>
+        new URL(`https://${address}:${apiPort}`).toString()
+    )
+    const streamUrl = computed(() =>
+        new URL(`https://${address}:${streamPort}`).toString()
     )
 
     const connected = ref(false)
@@ -14,18 +18,23 @@ export const useCameraStore = defineStore('cameras', () => {
     const fetchProducers = () => {
         console.log('[CAM]', 'Fetching streams...')
 
-        fetch(`${url.value}/streams`, { cache: 'no-cache' })
+        fetch(`${apiUrl.value}v3/paths/list`, {
+            cache: 'no-cache',
+            headers: {
+                Authorization: 'Basic ' + btoa('rover' + ':' + 'skar'),
+            },
+        })
             .then((raw) => {
                 return raw.json()
             })
             .then((data) => {
                 producers.value = []
 
-                for (const key of Object.keys(data)) {
-                    const name = key.replace(/[<">]/g, '')
-                    const src = encodeURIComponent(name)
+                for (const item of data.items) {
+                    const name = item.name
+                    const src = item.name
 
-                    if (data[key].producers.length > 0) {
+                    if (item.ready) {
                         producers.value = [...producers.value, src]
                     } else {
                         console.warn(`Stream without producers: ${name}`)
@@ -50,7 +59,7 @@ export const useCameraStore = defineStore('cameras', () => {
     }
 
     return {
-        url,
+        url: streamUrl,
         connected,
         producers,
 

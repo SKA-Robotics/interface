@@ -1,7 +1,9 @@
 import { useCameraStore } from '@/stores'
 
+import AutonomyStatusWindow from './AutonomyStatusWindow.vue'
 import CameraWindow from './CameraWindow.vue'
 import ControlWindow from './ControlWindow.vue'
+import PositionStatusWindow from './PositionStatusWindow.vue'
 import TestWindow from './TestWindow.vue'
 import ThreeDMapWindow from './ThreeDMapWindow.vue'
 
@@ -115,5 +117,19 @@ export default {
             },
         },
         icon: 'mdi-controller',
+    },
+
+    autonomyStatusWindow: {
+        typeName: 'Autonomy Status Window',
+        component: AutonomyStatusWindow,
+        configOptions: {},
+        icon: 'mdi-map-marker-path',
+    },
+
+    positionStatusWindow: {
+        typeName: 'Position Status Window',
+        component: PositionStatusWindow,
+        configOptions: {},
+        icon: 'mdi-map-marker-path',
     },
 }
